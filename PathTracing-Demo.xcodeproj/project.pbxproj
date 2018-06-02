@@ -8,6 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		C37CB79320C25E8B00A004E7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37CB79220C25E8B00A004E7 /* main.swift */; };
+		C37CB79A20C25F9F00A004E7 /* Render.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37CB79920C25F9F00A004E7 /* Render.swift */; };
+		C37CB79C20C2657700A004E7 /* ImageWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37CB79B20C2657700A004E7 /* ImageWriter.swift */; };
+		C37CB79E20C2670900A004E7 /* random.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37CB79D20C2670900A004E7 /* random.swift */; };
+		C37CB7A020C26B4D00A004E7 /* Radiance.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37CB79F20C26B4D00A004E7 /* Radiance.swift */; };
+		C37CB7A220C26BE300A004E7 /* Ray.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37CB7A120C26BE300A004E7 /* Ray.swift */; };
+		C37CB7A620C273AB00A004E7 /* Intersection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37CB7A520C273AB00A004E7 /* Intersection.swift */; };
+		C37CB7A820C274BC00A004E7 /* constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37CB7A720C274BC00A004E7 /* constant.swift */; };
+		C37CB7AA20C2759100A004E7 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37CB7A920C2759100A004E7 /* Scene.swift */; };
+		C37CB7AC20C2759F00A004E7 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37CB7AB20C2759F00A004E7 /* Object.swift */; };
+		C37CB7AE20C2760900A004E7 /* Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37CB7AD20C2760900A004E7 /* Material.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +35,16 @@
 /* Begin PBXFileReference section */
 		C37CB78F20C25E8B00A004E7 /* PathTracing-Demo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "PathTracing-Demo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C37CB79220C25E8B00A004E7 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		C37CB79920C25F9F00A004E7 /* Render.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Render.swift; sourceTree = "<group>"; };
+		C37CB79B20C2657700A004E7 /* ImageWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageWriter.swift; sourceTree = "<group>"; };
+		C37CB79D20C2670900A004E7 /* random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = random.swift; sourceTree = "<group>"; };
+		C37CB79F20C26B4D00A004E7 /* Radiance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Radiance.swift; sourceTree = "<group>"; };
+		C37CB7A120C26BE300A004E7 /* Ray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ray.swift; sourceTree = "<group>"; };
+		C37CB7A520C273AB00A004E7 /* Intersection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intersection.swift; sourceTree = "<group>"; };
+		C37CB7A720C274BC00A004E7 /* constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constant.swift; sourceTree = "<group>"; };
+		C37CB7A920C2759100A004E7 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+		C37CB7AB20C2759F00A004E7 /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
+		C37CB7AD20C2760900A004E7 /* Material.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Material.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +78,16 @@
 			isa = PBXGroup;
 			children = (
 				C37CB79220C25E8B00A004E7 /* main.swift */,
+				C37CB79920C25F9F00A004E7 /* Render.swift */,
+				C37CB79F20C26B4D00A004E7 /* Radiance.swift */,
+				C37CB7A520C273AB00A004E7 /* Intersection.swift */,
+				C37CB7A920C2759100A004E7 /* Scene.swift */,
+				C37CB7AB20C2759F00A004E7 /* Object.swift */,
+				C37CB7AD20C2760900A004E7 /* Material.swift */,
+				C37CB7A720C274BC00A004E7 /* constant.swift */,
+				C37CB7A120C26BE300A004E7 /* Ray.swift */,
+				C37CB79B20C2657700A004E7 /* ImageWriter.swift */,
+				C37CB79D20C2670900A004E7 /* random.swift */,
 			);
 			path = "PathTracing-Demo";
 			sourceTree = "<group>";
@@ -90,7 +120,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0930;
-				ORGANIZATIONNAME = "石田 展雅";
+				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					C37CB78E20C25E8B00A004E7 = {
 						CreatedOnToolsVersion = 9.3.1;
@@ -119,7 +149,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C37CB79E20C2670900A004E7 /* random.swift in Sources */,
+				C37CB7A820C274BC00A004E7 /* constant.swift in Sources */,
+				C37CB7AA20C2759100A004E7 /* Scene.swift in Sources */,
+				C37CB7A020C26B4D00A004E7 /* Radiance.swift in Sources */,
+				C37CB7AE20C2760900A004E7 /* Material.swift in Sources */,
+				C37CB7AC20C2759F00A004E7 /* Object.swift in Sources */,
+				C37CB7A220C26BE300A004E7 /* Ray.swift in Sources */,
+				C37CB7A620C273AB00A004E7 /* Intersection.swift in Sources */,
 				C37CB79320C25E8B00A004E7 /* main.swift in Sources */,
+				C37CB79C20C2657700A004E7 /* ImageWriter.swift in Sources */,
+				C37CB79A20C25F9F00A004E7 /* Render.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
