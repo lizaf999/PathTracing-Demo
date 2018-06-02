@@ -2,11 +2,12 @@
 //  main.swift
 //  PathTracing-Demo
 //
-//  Created by 石田 展雅 on 6/2/18.
-//  Copyright © 2018 石田 展雅. All rights reserved.
+//  Created by N.Ishida on 6/2/18.
 //
 
 import Foundation
 
-print("Hello, World!")
-
+let render = Render(width: 160, height: 120, samples: 4, superSample: 1)
+let scene = SphereScene()
+let radiance = RadianceBSDF(scene: scene)
+render.renderImage(radiance: radiance)

@@ -32,14 +32,21 @@ class RadianceBSDF: Radiance {
     if !isIntersect.0 {
       return backgroundColor
     }
-    let intersection = isIntersect.1
 
+    let intersection = isIntersect.1
     guard let nowObj = scene.objects[intersection.object_id]
     else {
       print("unexpected error: target object is null")
       return Color(0)
     }
     let hitpoint = intersection.hitpoint
+
+    //debug
+//    if depth==0 {
+//      let p = hitpoint.position
+//      print(p.x,p.y,p.z)
+//    }
+
     let orientingNormal:double3 = dot(hitpoint.normal, ray.dir) < 0 ? hitpoint.position : -hitpoint.normal
     let objMat:Material = nowObj.material
     var russianRouletteProbability = max(objMat.color.x,objMat.color.y,objMat.color.z)
@@ -74,18 +81,17 @@ class RadianceBSDF: Radiance {
       let r2s:double_t = sqrt(r2)
       let dir:double3 = normalize(u*cos(r1)*r2s + v*sin(r1)*r2s + w*sqrt(1-r2))
 
-      let nextRay = ray.initialize(origin: hitpoint.position, dir: dir)
-      incomingRadiance = calcRadiance(ray: nextRay, depth: depth+1)
+      incomingRadiance = calcRadiance(ray: Ray(origin: hitpoint.position, dir: dir), depth: depth+1)
 
       weight = nowObj.material.color / russianRouletteProbability
 
     case .SPECULAR:
-      let nextRay = ray.initialize(origin: hitpoint.position, dir: ray.dir-hitpoint.normal*2*dot(hitpoint.normal, ray.dir))
+      let nextRay = Ray(origin: hitpoint.position, dir: ray.dir-hitpoint.normal*2*dot(hitpoint.normal, ray.dir))
       incomingRadiance = calcRadiance(ray: nextRay, depth: depth+1)
       weight = nowObj.material.color / russianRouletteProbability
 
     case .REFRACTION:
-      let reflectionRay = ray.initialize(origin: hitpoint.position, dir: ray.dir-hitpoint.normal*2*dot(hitpoint.normal, ray.dir))
+      let reflectionRay = Ray(origin: hitpoint.position, dir: ray.dir-hitpoint.normal*2*dot(hitpoint.normal, ray.dir))
       let into:Bool = dot(hitpoint.normal, orientingNormal) > 0
 
       let nc:double_t = 1//真空の屈折率
@@ -101,7 +107,7 @@ class RadianceBSDF: Radiance {
       }
 
       let fac:double_t = (into ? 1:-1)*(ddn*nnt+sqrt(cos2t))
-      let refractionRay = ray.initialize(origin: hitpoint.position, dir: normalize(ray.dir*nnt - hitpoint.normal*fac))
+      let refractionRay = Ray(origin: hitpoint.position, dir: normalize(ray.dir*nnt - hitpoint.normal*fac))
       //schlick
       let a:double_t = nt-nc, b:double_t = nt+nc
       let R0:double_t = (a*a)/(b*b)

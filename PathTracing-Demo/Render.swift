@@ -48,7 +48,9 @@ class Render {
     screen_center = camera_pos+camera_dir*screen_dist
   }
 
-  func renderImage(radiance:Radiance, ray_virtual:Ray) {
+  func renderImage(radiance:Radiance) {
+    setScreen()
+
     var pixels:[[Color]] = Array(repeating: Array(repeating: Color(0), count: width), count: height)
     for y in 0..<height {
       print("Rendering y=\(y)/\(height-1)")
@@ -67,7 +69,7 @@ class Render {
 
               let rayDir:double3 = normalize(posOnScreen - camera_pos)
 
-              let nextRay = ray_virtual.initialize(origin: camera_pos, dir: rayDir)
+              let nextRay = Ray(origin: camera_pos, dir: rayDir)
               accumulated_radiance += radiance.calcRadiance(ray: nextRay, depth: 0) / double_t(samples) / double_t(superSapmles*superSapmles)
             }
             pixels[y][x] += accumulated_radiance
@@ -82,7 +84,8 @@ class Render {
         //FIXME: 整理されていない
         var col:Color = pixels[y][x]
         col = Color(pow(col.x, 1/2.2),pow(col.y, 1/2.2),pow(col.z, 1/2.2))
-        writer.data[x][y] = ImageWriter.Color(Red: col.x, Green: col.y, Blue: col.z)
+        //上下逆
+        writer.data[x][height-y-1] = ImageWriter.Color(Red: col.x, Green: col.y, Blue: col.z)
       }
     }
     writer.makeImage()

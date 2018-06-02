@@ -8,19 +8,13 @@
 import Foundation
 import simd
 
-class Ray {
-  var org = double3(0)
-  var dir = double3(0)
+struct Ray {
+  var org:double3
+  var dir:double3
 
-  init() {}
-
-  func initialize(origin:double3, dir:double3) -> Ray {
+  init(origin:double3,dir:double3) {
     self.org = origin
     self.dir = dir
-    var ray = Ray()
-    ray.org = origin
-    ray.dir = dir
-    return ray
   }
 
 }
