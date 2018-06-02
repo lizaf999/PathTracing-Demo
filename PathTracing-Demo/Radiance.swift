@@ -41,12 +41,6 @@ class RadianceBSDF: Radiance {
     }
     let hitpoint = intersection.hitpoint
 
-    //debug
-//    if depth==0 {
-//      let p = hitpoint.position
-//      print(p.x,p.y,p.z)
-//    }
-
     let orientingNormal:double3 = dot(hitpoint.normal, ray.dir) < 0 ? hitpoint.position : -hitpoint.normal
     let objMat:Material = nowObj.material
     var russianRouletteProbability = max(objMat.color.x,objMat.color.y,objMat.color.z)

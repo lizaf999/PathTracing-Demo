@@ -53,7 +53,8 @@ class Render {
 
     var pixels:[[Color]] = Array(repeating: Array(repeating: Color(0), count: width), count: height)
     for y in 0..<height {
-      print("Rendering y=\(y)/\(height-1)")
+      let rate = String(format: "%.2f", arguments: [double_t(y)/double_t(height)*100])
+      print("Rendering y=\(y)/\(height-1) " + rate + "%")
       for x in 0..<width {
         for sy in 0..<superSapmles {
           for sx in  0..<superSapmles {

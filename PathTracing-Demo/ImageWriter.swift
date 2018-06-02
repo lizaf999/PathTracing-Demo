@@ -75,6 +75,6 @@ class ImageWriter{
       Swift.print("\(error)")
       fatalError("画像を保存できませんでした。")
     }
-    print("saved to \(pictPath)")
+    print("Image was saved to \(pictPath).")
   }
 }
