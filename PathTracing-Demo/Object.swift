@@ -23,6 +23,13 @@ class Object {
     }
   }
 
+  var isLightSource:Bool {
+    get {
+      let col = material.color
+      return col.x>0 || col.y>0 || col.z>0
+    }
+  }
+
   init(material:Material) {
     self.material = material
   }
@@ -32,14 +39,30 @@ class Object {
   }
 }
 
-class Sphere: Object {
+class Sphere: Object,LightSource {
   let radius:double_t
   let position:double3
+
+  var area: double_t {
+    get {
+      return 4*double_t.pi*radius*radius
+    }
+  }
 
   init(radius:double_t, position:double3, material:Material) {
     self.radius = radius
     self.position = position
     super.init(material: material)
+  }
+
+  func getPoint() -> double3 {
+    let th:double_t = rand01() * double_t.pi
+    let phi:double_t = rand01() * 2 * double_t.pi
+
+    let x = radius*sin(th)*cos(phi)
+    let y = radius*sin(th)*sin(phi)
+    let z = radius*cos(th)
+    return position + double3(x,y,z)
   }
 
   override func intersect(ray: Ray) -> (Bool, Hitpoint) {
@@ -72,8 +95,6 @@ class Sphere: Object {
     return (true,hitpoint)
   }
 }
-
-
 
 
 

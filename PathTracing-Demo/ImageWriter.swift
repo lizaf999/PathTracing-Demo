@@ -13,12 +13,12 @@ class ImageWriter{
   private let pictPath:URL
   var data:[[Color]]
 
-  init(width:Int=500,height:Int=500) {
+  init(width:Int=500,height:Int=500,name:String="PathTracing.png") {
     self.width = width//横
     self.height = height//縦
     data = Array.init(repeating: Array.init(repeating: Color(Red: 0,Green: 0,Blue: 0), count: height), count: width)
     if let url = FileManager.default.urls(for: .picturesDirectory, in: .userDomainMask).last{
-      pictPath = url.appendingPathComponent("PathTracing.png")
+      pictPath = url.appendingPathComponent(name)
     }else{
       fatalError("ピクチャフォルダが開けませんでした。")
     }

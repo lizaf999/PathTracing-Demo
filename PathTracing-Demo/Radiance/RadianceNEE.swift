@@ -1,27 +1,14 @@
 //
-//  Radiance.swift
+//  RadianceNEE.swift
 //  PathTracing-Demo
 //
-//  Created by N.Ishida on 6/2/18.
+//  Created by N.Ishida on 6/3/18.
 //
 
 import Foundation
 import simd
 
-class Radiance {
-  //virtual class
-  let scene:Scene
-  init(scene:Scene) {
-    self.scene = scene
-  }
-
-  func calcRadiance(ray:Ray, depth:Int) -> Color {
-    return Color(0)
-  }
-}
-
-
-class RadianceBSDF: Radiance {
+class RadianceNEE: Radiance {
   let minDepth:Int = 5
   let maxDepth:Int = 64
 
@@ -35,9 +22,9 @@ class RadianceBSDF: Radiance {
 
     let intersection = isIntersect.1
     guard let nowObj = scene.objects[intersection.object_id]
-    else {
-      print("unexpected error: target object is null")
-      return Color(0)
+      else {
+        print("unexpected error: target object is null")
+        return Color(0)
     }
     let hitpoint = intersection.hitpoint
 
@@ -50,7 +37,7 @@ class RadianceBSDF: Radiance {
     }
     if depth>minDepth {
       if rand01() >= russianRouletteProbability {
-        return nowObj.material.emission
+        return double3(0)
       }
     }else{
       russianRouletteProbability = 1
@@ -78,6 +65,19 @@ class RadianceBSDF: Radiance {
       incomingRadiance = calcRadiance(ray: Ray(origin: hitpoint.position, dir: dir), depth: depth+1)
 
       weight = nowObj.material.color / russianRouletteProbability
+
+      //Next Event Estimation
+      for obj in scene.lightSource.values {
+        let ls = obj as! LightSource
+        let xl = ls.getPoint()
+        let area = ls.area
+        let lsDir = normalize(xl-hitpoint.position)
+        let shadowRay = Ray(origin: hitpoint.position, dir: dir)
+        let obstacle = scene.intersect_scene(ray: shadowRay)//自分自身との衝突はkEPSを使うべき
+        if obstacle.0 && obstacle.1.object_id != obj.objectID {
+          incomingRadiance += weight * calcRadiance(ray: shadowRay, depth: 0)//途中、depthをどうするかも
+        }
+      }
 
     case .SPECULAR:
       let nextRay = Ray(origin: hitpoint.position, dir: ray.dir-hitpoint.normal*2*dot(hitpoint.normal, ray.dir))
@@ -128,8 +128,6 @@ class RadianceBSDF: Radiance {
 
     }
 
-    return nowObj.material.emission + weight*incomingRadiance
+    return (depth==0 ? nowObj.material.emission : double3(0)) + weight*incomingRadiance
   }
-
-
 }

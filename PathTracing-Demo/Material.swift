@@ -31,3 +31,8 @@ class Material {
     self.reflectionType = reflectionType
   }
 }
+
+protocol LightSource {
+  var area:double_t {get}
+  func getPoint() -> double3
+}

@@ -31,7 +31,7 @@ class Render {
     self.width = width
     self.height = height
     self.samples = samples
-    self.superSapmles = samples
+    self.superSapmles = superSample
   }
 
   func setCameraProp(pos:double3,dir:double3,up:double3) {
@@ -52,14 +52,16 @@ class Render {
     setScreen()
 
     var pixels:[[Color]] = Array(repeating: Array(repeating: Color(0), count: width), count: height)
-    for y in 0..<height {
-      let rate = String(format: "%.2f", arguments: [double_t(y)/double_t(height)*100])
-      print("Rendering y=\(y)/\(height-1) " + rate + "%")
-      for x in 0..<width {
-        for sy in 0..<superSapmles {
-          for sx in  0..<superSapmles {
-            var accumulated_radiance = Color(0)
-            for _ in 0..<samples {
+    var sampled:Int = 1
+    for sm in 0..<samples {
+      let rate = String(format: "%.2f", arguments: [double_t(sm)/double_t(samples)*100])
+      print("Rendering sample \(sm)/\(samples) " + rate + "%")
+      for y in 0..<height {
+        for x in 0..<width {
+          var accumulatedRadiance = Color(0)
+          for sy in 0..<superSapmles {
+            for sx in  0..<superSapmles {
+
               let rate:double_t = 1/double_t(superSapmles)
               let r1:double_t = double_t(sx)*rate / rate*2
               let r2:double_t = double_t(sy)*rate / rate*2
@@ -71,15 +73,23 @@ class Render {
               let rayDir:double3 = normalize(posOnScreen - camera_pos)
 
               let nextRay = Ray(origin: camera_pos, dir: rayDir)
-              accumulated_radiance += radiance.calcRadiance(ray: nextRay, depth: 0) / double_t(samples) / double_t(superSapmles*superSapmles)
+              accumulatedRadiance += radiance.calcRadiance(ray: nextRay, depth: 0) / double_t(superSapmles*superSapmles)
             }
-            pixels[y][x] += accumulated_radiance
           }
+          pixels[y][x] = (pixels[y][x]*double_t(sampled-1)+accumulatedRadiance)/double_t(sampled)
         }
       }
+      sampled += 1
+      writeToImage(pixels: pixels, name: "PathTracing.png")
     }
+    writeToImage(pixels: pixels, name: "PathTracingComplete.png")
 
-    let writer = ImageWriter(width: width, height: height)
+  }
+
+  func writeToImage(pixels:[[Color]], name:String) {
+    let width:Int = pixels[0].count
+    let height:Int = pixels.count
+    let writer = ImageWriter(width: width, height: height, name: name)
     for y in 0..<height {
       for x in 0..<width {
         //FIXME: 整理されていない
@@ -90,7 +100,6 @@ class Render {
       }
     }
     writer.makeImage()
-
   }
 }
 

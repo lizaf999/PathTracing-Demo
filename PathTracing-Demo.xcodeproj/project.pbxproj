@@ -18,6 +18,7 @@
 		C37CB7AA20C2759100A004E7 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37CB7A920C2759100A004E7 /* Scene.swift */; };
 		C37CB7AC20C2759F00A004E7 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37CB7AB20C2759F00A004E7 /* Object.swift */; };
 		C37CB7AE20C2760900A004E7 /* Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37CB7AD20C2760900A004E7 /* Material.swift */; };
+		C37CB7B020C2E90300A004E7 /* RadianceNEE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37CB7AF20C2E90300A004E7 /* RadianceNEE.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,6 +46,7 @@
 		C37CB7A920C2759100A004E7 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		C37CB7AB20C2759F00A004E7 /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
 		C37CB7AD20C2760900A004E7 /* Material.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Material.swift; sourceTree = "<group>"; };
+		C37CB7AF20C2E90300A004E7 /* RadianceNEE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadianceNEE.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,17 +81,26 @@
 			children = (
 				C37CB79220C25E8B00A004E7 /* main.swift */,
 				C37CB79920C25F9F00A004E7 /* Render.swift */,
-				C37CB79F20C26B4D00A004E7 /* Radiance.swift */,
-				C37CB7A520C273AB00A004E7 /* Intersection.swift */,
+				C37CB7B120C2E90A00A004E7 /* Radiance */,
 				C37CB7A920C2759100A004E7 /* Scene.swift */,
-				C37CB7AB20C2759F00A004E7 /* Object.swift */,
 				C37CB7AD20C2760900A004E7 /* Material.swift */,
+				C37CB7AB20C2759F00A004E7 /* Object.swift */,
+				C37CB7A520C273AB00A004E7 /* Intersection.swift */,
 				C37CB7A720C274BC00A004E7 /* constant.swift */,
 				C37CB7A120C26BE300A004E7 /* Ray.swift */,
 				C37CB79B20C2657700A004E7 /* ImageWriter.swift */,
 				C37CB79D20C2670900A004E7 /* random.swift */,
 			);
 			path = "PathTracing-Demo";
+			sourceTree = "<group>";
+		};
+		C37CB7B120C2E90A00A004E7 /* Radiance */ = {
+			isa = PBXGroup;
+			children = (
+				C37CB79F20C26B4D00A004E7 /* Radiance.swift */,
+				C37CB7AF20C2E90300A004E7 /* RadianceNEE.swift */,
+			);
+			path = Radiance;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +167,7 @@
 				C37CB7AE20C2760900A004E7 /* Material.swift in Sources */,
 				C37CB7AC20C2759F00A004E7 /* Object.swift in Sources */,
 				C37CB7A220C26BE300A004E7 /* Ray.swift in Sources */,
+				C37CB7B020C2E90300A004E7 /* RadianceNEE.swift in Sources */,
 				C37CB7A620C273AB00A004E7 /* Intersection.swift in Sources */,
 				C37CB79320C25E8B00A004E7 /* main.swift in Sources */,
 				C37CB79C20C2657700A004E7 /* ImageWriter.swift in Sources */,
@@ -292,6 +304,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 			};
