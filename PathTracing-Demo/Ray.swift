@@ -12,7 +12,7 @@ struct Ray {
   var org:double3
   var dir:double3
 
-  init(origin:double3,dir:double3) {
+  init(_ origin:double3,_ dir:double3) {
     self.org = origin
     self.dir = dir
   }

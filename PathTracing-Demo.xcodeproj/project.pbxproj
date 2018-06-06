@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C337923120C77102000250C1 /* vectorSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = C337923020C77102000250C1 /* vectorSupport.swift */; };
+		C337923320C7748D000250C1 /* Sampling.swift in Sources */ = {isa = PBXBuildFile; fileRef = C337923220C7748D000250C1 /* Sampling.swift */; };
 		C37CB79320C25E8B00A004E7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37CB79220C25E8B00A004E7 /* main.swift */; };
 		C37CB79A20C25F9F00A004E7 /* Render.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37CB79920C25F9F00A004E7 /* Render.swift */; };
 		C37CB79C20C2657700A004E7 /* ImageWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37CB79B20C2657700A004E7 /* ImageWriter.swift */; };
@@ -18,7 +20,6 @@
 		C37CB7AA20C2759100A004E7 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37CB7A920C2759100A004E7 /* Scene.swift */; };
 		C37CB7AC20C2759F00A004E7 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37CB7AB20C2759F00A004E7 /* Object.swift */; };
 		C37CB7AE20C2760900A004E7 /* Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37CB7AD20C2760900A004E7 /* Material.swift */; };
-		C37CB7B020C2E90300A004E7 /* RadianceNEE.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37CB7AF20C2E90300A004E7 /* RadianceNEE.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +35,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C337923020C77102000250C1 /* vectorSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vectorSupport.swift; sourceTree = "<group>"; };
+		C337923220C7748D000250C1 /* Sampling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sampling.swift; sourceTree = "<group>"; };
 		C37CB78F20C25E8B00A004E7 /* PathTracing-Demo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "PathTracing-Demo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C37CB79220C25E8B00A004E7 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		C37CB79920C25F9F00A004E7 /* Render.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Render.swift; sourceTree = "<group>"; };
@@ -84,6 +87,8 @@
 				C37CB7B120C2E90A00A004E7 /* Radiance */,
 				C37CB7A920C2759100A004E7 /* Scene.swift */,
 				C37CB7AD20C2760900A004E7 /* Material.swift */,
+				C337923220C7748D000250C1 /* Sampling.swift */,
+				C337923020C77102000250C1 /* vectorSupport.swift */,
 				C37CB7AB20C2759F00A004E7 /* Object.swift */,
 				C37CB7A520C273AB00A004E7 /* Intersection.swift */,
 				C37CB7A720C274BC00A004E7 /* constant.swift */,
@@ -160,14 +165,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C337923320C7748D000250C1 /* Sampling.swift in Sources */,
 				C37CB79E20C2670900A004E7 /* random.swift in Sources */,
 				C37CB7A820C274BC00A004E7 /* constant.swift in Sources */,
 				C37CB7AA20C2759100A004E7 /* Scene.swift in Sources */,
 				C37CB7A020C26B4D00A004E7 /* Radiance.swift in Sources */,
+				C337923120C77102000250C1 /* vectorSupport.swift in Sources */,
 				C37CB7AE20C2760900A004E7 /* Material.swift in Sources */,
 				C37CB7AC20C2759F00A004E7 /* Object.swift in Sources */,
 				C37CB7A220C26BE300A004E7 /* Ray.swift in Sources */,
-				C37CB7B020C2E90300A004E7 /* RadianceNEE.swift in Sources */,
 				C37CB7A620C273AB00A004E7 /* Intersection.swift in Sources */,
 				C37CB79320C25E8B00A004E7 /* main.swift in Sources */,
 				C37CB79C20C2657700A004E7 /* ImageWriter.swift in Sources */,

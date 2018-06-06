@@ -30,7 +30,7 @@ class RadianceNEE: Radiance {
 
     let orientingNormal:double3 = dot(hitpoint.normal, ray.dir) < 0 ? hitpoint.position : -hitpoint.normal
     let objMat:Material = nowObj.material
-    var russianRouletteProbability = max(objMat.color.x,objMat.color.y,objMat.color.z)
+    var russianRouletteProbability = max(objMat.reflectance.x,objMat.reflectance.y,objMat.reflectance.z)
 
     if depth>maxDepth {
       russianRouletteProbability += pow(0.5, double_t(depth-maxDepth))

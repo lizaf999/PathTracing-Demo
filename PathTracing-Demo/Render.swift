@@ -72,7 +72,7 @@ class Render {
 
               let rayDir:double3 = normalize(posOnScreen - camera_pos)
 
-              let nextRay = Ray(origin: camera_pos, dir: rayDir)
+              let nextRay = Ray(camera_pos, rayDir)
               accumulatedRadiance += radiance.calcRadiance(ray: nextRay, depth: 0) / double_t(superSapmles*superSapmles)
             }
           }

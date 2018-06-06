@@ -11,7 +11,7 @@ import simd
 class Object {
   static private var currentObjectID:Int = 0
 
-  var material = Material()
+  var material:Material
   private var _objectID:Int = -1
   var objectID:Int {
     get {
@@ -25,7 +25,7 @@ class Object {
 
   var isLightSource:Bool {
     get {
-      let col = material.color
+      let col = material.reflectance
       return col.x>0 || col.y>0 || col.z>0
     }
   }
@@ -39,15 +39,9 @@ class Object {
   }
 }
 
-class Sphere: Object,LightSource {
+class Sphere: Object{
   let radius:double_t
   let position:double3
-
-  var area: double_t {
-    get {
-      return 4*double_t.pi*radius*radius
-    }
-  }
 
   init(radius:double_t, position:double3, material:Material) {
     self.radius = radius

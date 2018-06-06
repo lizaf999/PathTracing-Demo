@@ -9,17 +9,31 @@ import Foundation
 import simd
 
 let spheres:[Object] = [
-  Sphere(radius: 1e5, position: double3(1e5+1,40.8,81.6), material: Material(emission: Color(0), color: Color(0.75,0.25,0.25), reflectionType: .DIFFUSE)),
-  Sphere(radius: 1e5, position: double3(-1e5+99,40.8,81.6), material: Material(emission: Color(0), color: Color(0.25,0.25,0.75), reflectionType: .DIFFUSE)),
-  Sphere(radius: 1e5, position: double3(50,40.8,1e5), material: Material(emission: Color(0), color: Color(0.75,0.75,0.75), reflectionType: .DIFFUSE)),
-  Sphere(radius: 1e5, position: double3(50,40.8,-1e5+250), material: Material(emission: Color(0), color: Color(0), reflectionType: .DIFFUSE)),
-  Sphere(radius: 1e5, position: double3(50,1e5,81.6), material: Material(emission: Color(0), color: Color(0.75,0.75,0.75), reflectionType: .SPECULAR)),
-  Sphere(radius: 1e5, position: double3(50,-1e5+81.6,81.6), material: Material(emission: Color(0), color: Color(0.75,0.75,0.75), reflectionType: .DIFFUSE)),
-  Sphere(radius: 20, position: double3(65,20,20), material: Material(emission: Color(0), color: Color(0.25,0.75,0.25), reflectionType: .DIFFUSE)),
-  Sphere(radius: 16.5, position: double3(27,16.5,47), material: Material(emission: Color(0), color: Color(0.99), reflectionType: .SPECULAR)),
-  Sphere(radius: 16.5, position: double3(77,16.5,78), material: Material(emission: Color(0), color: Color(0.99), reflectionType: .REFRACTION)),
-  Sphere(radius: 15, position: double3(50,90,81.6), material: Material(emission: Color(36), color: Color(0), reflectionType: .DIFFUSE))
+  Sphere(radius: 1e5, position: double3(1e5+1,40.8,81.6),
+         material: LambertianMaterial(Color(0.75,0.25,0.25))),
+  Sphere(radius: 1e5, position: double3(-1e5+99,40.8,81.6),
+         material: LambertianMaterial(Color(0.25,0.25,0.75))),
+  Sphere(radius: 1e5, position: double3(50,40.8,1e5),
+         material: LambertianMaterial(Color(0.75))),
+  Sphere(radius: 1e5, position: double3(50,40.8,-1e5+250),
+         material: LambertianMaterial(Color(0))),
+  Sphere(radius: 1e5, position: double3(50,1e5,81.6),
+         material: SpecularMaterial(Color(0.75))),
+  Sphere(radius: 1e5, position: double3(50,-1e5+81.6,81.6),
+         material: LambertianMaterial(Color(0.75))),
+  Sphere(radius: 20, position: double3(65,20,20),
+         material: LambertianMaterial(Color(0.25,0.75,0.25))),
+  Sphere(radius: 16.5, position: double3(27,16.5,47),
+         material: SpecularMaterial(Color(0.99))),
+  Sphere(radius: 16.5, position: double3(77,16.5,78),
+         material: GlassMaterial(Color(1), 1.2)),
+  Sphere(radius: 15, position: double3(50,90,81.6),
+         material: LightSource(Color(36))),
+
+  Sphere(radius: 1e5, position: double3(50,1e5+2,81.6), material: GlassMaterial(Color(0.99)))
 ]
+
+
 
 class Scene {
   var objects:[Int:Object] = [:]
