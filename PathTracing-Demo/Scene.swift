@@ -18,7 +18,7 @@ let spheres:[Object] = [
   Sphere(radius: 1e5, position: double3(50,40.8,-1e5+250),
          material: LambertianMaterial(Color(0))),
   Sphere(radius: 1e5, position: double3(50,1e5,81.6),
-         material: SpecularMaterial(Color(0.75))),
+         material: LambertianMaterial(Color(0.75))),
   Sphere(radius: 1e5, position: double3(50,-1e5+81.6,81.6),
          material: LambertianMaterial(Color(0.75))),
   Sphere(radius: 20, position: double3(65,20,20),
@@ -26,11 +26,12 @@ let spheres:[Object] = [
   Sphere(radius: 16.5, position: double3(27,16.5,47),
          material: SpecularMaterial(Color(0.99))),
   Sphere(radius: 16.5, position: double3(77,16.5,78),
-         material: GlassMaterial(Color(1), 1.2)),
-  Sphere(radius: 15, position: double3(50,90,81.6),
-         material: LightSource(Color(36))),
+         material: GlassMaterial(Color(0.9999), 1.5)),
+  Sphere(radius: 7, position: double3(50,73,81.6),
+         material: LightSource(Color(15))),
+  //Sphere(radius: 10e5, position: double3(50,-1e5+81.6,81.6),
+//         material: LightSource(Color(20))),
 
-  Sphere(radius: 1e5, position: double3(50,1e5+2,81.6), material: GlassMaterial(Color(0.99)))
 ]
 
 
@@ -52,7 +53,7 @@ class SphereScene: Scene {
     super.init()
     for object in spheres {
       objects[object.objectID] = object
-      if object is LightSource {
+      if object.material is LightSource {
         lightSource[object.objectID] = object
       }
     }

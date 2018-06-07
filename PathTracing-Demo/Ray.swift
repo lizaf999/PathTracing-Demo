@@ -11,6 +11,7 @@ import simd
 struct Ray {
   var org:double3
   var dir:double3
+  var fromSpecular:Bool = false
 
   init(_ origin:double3,_ dir:double3) {
     self.org = origin

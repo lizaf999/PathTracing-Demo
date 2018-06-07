@@ -23,12 +23,12 @@ class Object {
     }
   }
 
-  var isLightSource:Bool {
-    get {
-      let col = material.reflectance
-      return col.x>0 || col.y>0 || col.z>0
-    }
+  //for Next Event Estimation
+  var area:double_t = 0
+  func getRandomPoint() -> (double3,double3) {
+    return (double3(0),double3(0))
   }
+
 
   init(material:Material) {
     self.material = material
@@ -41,22 +41,22 @@ class Object {
 
 class Sphere: Object{
   let radius:double_t
-  let position:double3
+  var position:double3
 
   init(radius:double_t, position:double3, material:Material) {
     self.radius = radius
     self.position = position
     super.init(material: material)
+
+    area = 4*double_t.pi*radius*radius
   }
 
-  func getPoint() -> double3 {
-    let th:double_t = rand01() * double_t.pi
-    let phi:double_t = rand01() * 2 * double_t.pi
-
-    let x = radius*sin(th)*cos(phi)
-    let y = radius*sin(th)*sin(phi)
-    let z = radius*cos(th)
-    return position + double3(x,y,z)
+  override func getRandomPoint() -> (double3,double3) {
+    let x:double_t = rand01()
+    let y:double_t = rand01()
+    let z:double_t = rand01()
+    let n = normalize(double3(x,y,z))
+    return (position + radius*n, n)
   }
 
   override func intersect(ray: Ray) -> (Bool, Hitpoint) {

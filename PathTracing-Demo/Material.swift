@@ -87,7 +87,7 @@ class GlassMaterial: Material {
   }
 
   func eval(in vecIn: double3, normal: double3, out vecOut: double3) -> Color {
-    return reflectance * DELTA / dot(normal, vecOut)
+    return reflectance * DELTA / abs(dot(normal, vecOut))
   }
 
   func sample(in vecIn: double3, normal: double3, pdf: inout double_t, brdfValue: inout Color) -> double3 {
@@ -101,7 +101,7 @@ class GlassMaterial: Material {
     let cos2t_2:double_t = 1-n*n*(1-ddn*ddn)
 
     //全反射
-    let reflectioDir:double3 = reflect(vecIn, n: now_normal)
+    let reflectioDir:double3 = normalize(vecIn - normal*2*dot(normal, vecIn))
     if cos2t_2<0 {
       // MARK: サンプルと違う
       if pdf != 0 {
@@ -144,7 +144,7 @@ class GlassMaterial: Material {
         pdf = DELTA*(1-probability)
       }
       if brdfValue.x != 0 || brdfValue.y != 0 || brdfValue.z != 0 {
-        brdfValue  = Ft*eval(in: vecIn, normal: normal, out: refractionDir)
+        brdfValue  = Ft*eval(in: vecIn, normal: normal, out: reflectioDir)
       }
       return refractionDir
     }

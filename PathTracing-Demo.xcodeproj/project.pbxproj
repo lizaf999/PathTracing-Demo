@@ -49,7 +49,6 @@
 		C37CB7A920C2759100A004E7 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		C37CB7AB20C2759F00A004E7 /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
 		C37CB7AD20C2760900A004E7 /* Material.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Material.swift; sourceTree = "<group>"; };
-		C37CB7AF20C2E90300A004E7 /* RadianceNEE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadianceNEE.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +83,7 @@
 			children = (
 				C37CB79220C25E8B00A004E7 /* main.swift */,
 				C37CB79920C25F9F00A004E7 /* Render.swift */,
-				C37CB7B120C2E90A00A004E7 /* Radiance */,
+				C37CB79F20C26B4D00A004E7 /* Radiance.swift */,
 				C37CB7A920C2759100A004E7 /* Scene.swift */,
 				C37CB7AD20C2760900A004E7 /* Material.swift */,
 				C337923220C7748D000250C1 /* Sampling.swift */,
@@ -97,15 +96,6 @@
 				C37CB79D20C2670900A004E7 /* random.swift */,
 			);
 			path = "PathTracing-Demo";
-			sourceTree = "<group>";
-		};
-		C37CB7B120C2E90A00A004E7 /* Radiance */ = {
-			isa = PBXGroup;
-			children = (
-				C37CB79F20C26B4D00A004E7 /* Radiance.swift */,
-				C37CB7AF20C2E90300A004E7 /* RadianceNEE.swift */,
-			);
-			path = Radiance;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
