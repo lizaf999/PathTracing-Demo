@@ -16,7 +16,7 @@ class Object {
   var objectID:Int {
     get {
       if(_objectID == -1){
-        Object.currentObjectID += 1
+        Object.currentObjectID += 1//1始まり
         _objectID = Object.currentObjectID
       }
       return _objectID

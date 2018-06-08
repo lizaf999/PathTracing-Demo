@@ -181,6 +181,7 @@ class RadianceSimple: Radiance {
 }
 
 class RadianceNEE: Radiance {
+  //FIXME: 背景色が機能しない
   let backgroundColor = Color(0)
   let maxDepth:Int = 64
   let minDepth:Int = 10
@@ -222,7 +223,7 @@ class RadianceNEE: Radiance {
           continue
         }
 
-        //FIXME: area!=0
+        //FIXME: area!=0は不適切
         if obj.area != 0 {
           let le:Color = calcRadiance(ray: shadowRay, depth: 0)
           let brdf = material.eval(in: ray.dir, normal: orientingNormal, out: shadowRay.dir)
@@ -261,7 +262,7 @@ class RadianceNEE: Radiance {
     var brdfValue = Color(-1)
     let dirOut:double3 = material.sample(in: ray.dir, normal: hitpoint.normal, pdf: &pdf, brdfValue: &brdfValue)
 
-    let cost:double_t = dot(orientingNormal, dirOut)
+    let cost:double_t = abs(dot(orientingNormal, dirOut))
 
     var nextRay = Ray(hitpoint.position,dirOut)
     if !(material is LambertianMaterial) {
