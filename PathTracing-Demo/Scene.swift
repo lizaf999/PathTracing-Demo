@@ -29,8 +29,8 @@ let spheres:[Object] = [
          material: GlassMaterial(Color(0.9999), 1.5)),
   Sphere(radius: 7, position: double3(50,73,81.6),
          material: LightSource(Color(15))),
-  //Sphere(radius: 10e5, position: double3(50,-1e5+81.6,81.6),
-//         material: LightSource(Color(20))),
+//  Sphere(radius: 15, position: double3(77+7,16.5,78),
+//         material: LightSource(Color(15))),
 
 ]
 

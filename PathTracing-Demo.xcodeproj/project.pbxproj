@@ -92,8 +92,8 @@
 				C37CB7A520C273AB00A004E7 /* Intersection.swift */,
 				C37CB7A720C274BC00A004E7 /* constant.swift */,
 				C37CB7A120C26BE300A004E7 /* Ray.swift */,
-				C37CB79B20C2657700A004E7 /* ImageWriter.swift */,
 				C37CB79D20C2670900A004E7 /* random.swift */,
+				C37CB79B20C2657700A004E7 /* ImageWriter.swift */,
 			);
 			path = "PathTracing-Demo";
 			sourceTree = "<group>";

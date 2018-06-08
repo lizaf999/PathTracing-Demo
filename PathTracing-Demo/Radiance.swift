@@ -259,7 +259,7 @@ class RadianceNEE: Radiance {
 
     var pdf:double_t = -1
     var brdfValue = Color(-1)
-    let dirOut:double3 = material.sample(in: ray.dir, normal: orientingNormal, pdf: &pdf, brdfValue: &brdfValue)
+    let dirOut:double3 = material.sample(in: ray.dir, normal: hitpoint.normal, pdf: &pdf, brdfValue: &brdfValue)
 
     let cost:double_t = dot(orientingNormal, dirOut)
 

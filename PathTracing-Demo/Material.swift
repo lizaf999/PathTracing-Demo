@@ -18,24 +18,6 @@ enum ReflectionType {
 
 let kIor:double_t = 1.5//屈折率
 
-//class Material {
-//  var emission:Color = Color(0)
-//  var color:Color = Color(0)
-//  var reflectionType:ReflectionType = ReflectionType.DIFFUSE
-//
-//  init() {}
-//
-//  init(emission:Color, color: Color, reflectionType:ReflectionType) {
-//    self.emission = emission
-//    self.color = color
-//    self.reflectionType = reflectionType
-//  }
-//}
-//
-//protocol LightSource {
-//  var area:double_t {get}
-//  func getPoint() -> double3
-//}
 
 protocol Material {
   var emission:Color {get}
@@ -59,15 +41,15 @@ class LambertianMaterial: Material {
   }
 
   func sample(in vecIn: double3, normal: double3, pdf: inout double_t, brdfValue: inout Color) -> double3 {
-    let (tangent,binormal):(double3,double3) = createOrthoNormalBasis(normal: normal)
-    let dir:double3 = Sampling.cosineWeightedHemisphereSurface(normal: normal, tangent: tangent, binormal: binormal)
+    let now_normal:double3 = dot(normal, vecIn) < 0 ? normal : -normal
+    let (tangent,binormal):(double3,double3) = createOrthoNormalBasis(normal: now_normal)
+    let dir:double3 = Sampling.cosineWeightedHemisphereSurface(normal: now_normal, tangent: tangent, binormal: binormal)
 
-    // MARK: サンプルと違う
     if pdf != 0 {
-      pdf = dot(normal, dir) / double_t.pi
+      pdf = dot(now_normal, dir) / double_t.pi
     }
     if brdfValue.x != 0 || brdfValue.y != 0 || brdfValue.z != 0 {
-      brdfValue = eval(in: vecIn, normal: normal, out: dir)
+      brdfValue = eval(in: vecIn, normal: now_normal, out: dir)
     }
     return dir
     
@@ -87,7 +69,7 @@ class GlassMaterial: Material {
   }
 
   func eval(in vecIn: double3, normal: double3, out vecOut: double3) -> Color {
-    return reflectance * DELTA / abs(dot(normal, vecOut))
+    return reflectance * DELTA / abs(dot(normal, vecOut))//abs
   }
 
   func sample(in vecIn: double3, normal: double3, pdf: inout double_t, brdfValue: inout Color) -> double3 {
@@ -130,7 +112,6 @@ class GlassMaterial: Material {
     // FIXME: schlickは使わない？
     let probability:double_t = Fr
     if rand01()<probability{//反射
-      // MARK: サンプルと違う
       if pdf != 0 {
         pdf = DELTA*probability
       }
@@ -139,12 +120,11 @@ class GlassMaterial: Material {
       }
       return reflectioDir
     }else{//屈折
-      // MARK: サンプルと違う
       if pdf != 0 {
         pdf = DELTA*(1-probability)
       }
       if brdfValue.x != 0 || brdfValue.y != 0 || brdfValue.z != 0 {
-        brdfValue  = Ft*eval(in: vecIn, normal: normal, out: reflectioDir)
+        brdfValue  = Ft*eval(in: vecIn, normal: normal, out: refractionDir)
       }
       return refractionDir
     }
