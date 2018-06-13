@@ -133,7 +133,7 @@ class Radiance {
 
 class RadianceSimple: Radiance {
   let backgroundColor = Color(0)
-  let maxDepth:Int = 64
+  let maxDepth:Int = 32
   let minDepth:Int = 10
 
   override func calcRadiance(ray: Ray, depth: Int) -> Color {

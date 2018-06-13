@@ -80,7 +80,7 @@ class Render {
         }
       }
       sampled += 1
-      writeToImage(pixels: pixels, name: "PathTracing.png")
+      writeToImage(pixels: pixels, name: "PathTracing-Demo.png")
     }
     writeToImage(pixels: pixels, name: "PathTracingComplete.png")
 
